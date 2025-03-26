@@ -17,12 +17,12 @@ let exams = [
   }
 ];
 
-// tejares-get
+// mahawan-get
 router.get('/', (req, res) => {
   res.json(exams);
 });
 
-// go-post
+// Mahinay-post
 router.post('/', (req, res) => {
     const newExam = {
       id: exams.length + 1,
@@ -32,7 +32,7 @@ router.post('/', (req, res) => {
     res.status(201).json(newExam);
   });
 
-// hagupar-put 
+// Auman-Update
 router.put('/:id', (req, res) => {
     const id = parseInt(req.params.id);
     const examIndex = exams.findIndex(exam => exam.id === id);
