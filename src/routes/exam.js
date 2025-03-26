@@ -1,8 +1,6 @@
 const express = require('express');
 const router = express.Router();
 
-//added a comment for a sample conflict
-
 // Sample Data
 let exams = [
   { 
@@ -34,21 +32,4 @@ router.post('/', (req, res) => {
     res.status(201).json(newExam);
   });
 
-// auman-update 
-router.put('/:id', (req, res) => {
-    const id = parseInt(req.params.id);
-    const examIndex = exams.findIndex(exam => exam.id === id);
-    
-    if (examIndex === -1) {
-      return res.status(404).json({ message: 'Exam not found' });
-    }
-    
-    exams[examIndex] = { 
-      ...exams[examIndex], 
-      ...req.body 
-    };
-    
-    res.json(exams[examIndex]);
-  });
-  
 module.exports = router;
