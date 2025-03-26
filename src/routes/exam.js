@@ -22,4 +22,17 @@ router.get('/', (req, res) => {
   res.json(exams);
 });
 
+<<<<<<< HEAD
+=======
+// go-post
+router.post('/', (req, res) => {
+    const newExam = {
+      id: exams.length + 1,
+      ...req.body
+    };
+    exams.push(newExam);
+    res.status(201).json(newExam);
+  });
+
+>>>>>>> 51d94c35510912fe770f9684f41de4d69106bffb
 module.exports = router;
