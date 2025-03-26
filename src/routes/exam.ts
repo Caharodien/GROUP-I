@@ -1,20 +1,16 @@
-import express, { Request, Response } from "express";
-
-const router = express.Router();
-
-const exams: { id: number; name: string; date: string }[] = []; // ✅ Define an array to store exams
-
-router.post("/exams", (req: Request, res: Response) => {
-    const { id, name, date } = req.body;
-
-    if (!id || !name || !date) {
-        return res.status(400).json({ message: "Missing exam details" });
+router.put("/exams/:id", (req, res) => {
+    const { id } = req.params;
+    const { name, date } = req.body;
+  
+    const exam = exams.find((exam) => exam.id === parseInt(id));
+  
+    if (!exam) {
+      return res.status(404).json({ message: "Exam not found" });
     }
-
-    const exam = { id, name, date };
-    exams.push(exam);
-
-    res.status(201).json({ message: "Exam added successfully", exams });
-});
-
-export default router; // ✅ Export the router properly
+  
+    if (name) exam.name = name;
+    if (date) exam.date = date;
+  
+    res.json({ message: "Exam updated successfully", exam });
+  });
+  
